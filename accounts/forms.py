@@ -1,7 +1,6 @@
-# forms.py
 
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 
@@ -35,3 +34,9 @@ class RegisterForm(UserCreationForm):
         if User.objects.filter(username=username).exists():
             raise ValidationError("A user with this username already exists.")
         return username
+
+
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'autofocus': True}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
