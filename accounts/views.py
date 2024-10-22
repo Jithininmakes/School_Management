@@ -31,6 +31,8 @@ class LoginView(FormView):
         return super().form_valid(form)
 
 
+
+
 # Create your views here.
 class HomeView(TemplateView):
     template_name = 'school/home.html'
