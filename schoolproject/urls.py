@@ -19,10 +19,17 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path,include
 
-appname='accounts'
+appname='accounts',
+appname='student'
+appname='dashboard'
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls'))
+    path('', include('student.urls'))
+    path('', include('dashboard.urls'))
+
 ]
 
 if settings.DEBUG:
