@@ -2,6 +2,8 @@ from django.urls import path
 from .views import HomeView,RegisterView,LoginView,IndexView
 from django.contrib.auth.views import LogoutView
 
+app_name = 'accounts'
+
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
