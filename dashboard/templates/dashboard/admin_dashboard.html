@@ -3,6 +3,7 @@
 {% block content %}
 <div class="container">
     <h1>Admin Dashboard</h1>
+    {% csrf_token %}
     <div class="row">
         <div class="col-md-4">
             <a href="" class="btn btn-primary">Manage Students</a>
