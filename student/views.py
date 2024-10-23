@@ -14,15 +14,15 @@ class StudentCreateView(CreateView):
     model = Student
     form_class = StudentForm
     template_name = 'students/student_form.html'
-    success_url = reverse_lazy('student-list')
+    success_url = reverse_lazy('student:student-list')
 
 class StudentUpdateView(UpdateView):
     model = Student
     form_class = StudentForm
     template_name = 'students/student_form.html'
-    success_url = reverse_lazy('student-list')
+    success_url = reverse_lazy('student:student-list')
 
 class StudentDeleteView(DeleteView):
     model = Student
     template_name = 'students/student_delete.html'
-    success_url = reverse_lazy('student-list')
+    success_url = reverse_lazy('student:student-list')
