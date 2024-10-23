@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AdminDashboardView, OfficeStaffDashboardView, LibrarianDashboardView
+from .views import AdminView, OfficeStaffView, LibrarianView
 
 app_name = 'dashboard'
 

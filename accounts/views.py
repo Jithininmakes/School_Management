@@ -17,14 +17,14 @@ class RegisterView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)  # Log in the user after registration
-        return redirect('login')  # Redirect to home or another page after registration
+        return redirect('accounts:login')  # Redirect to home or another page after registration
 
 
 
 class LoginView(FormView):
     template_name = 'school/login.html'
     form_class = LoginForm
-    success_url = reverse_lazy('home')  # Redirect to home after login
+    success_url = reverse_lazy('dashboard:admin_dashboard')  # Redirect to home after login
 
     def form_valid(self, form):
         login(self.request, form.get_user())  # Log in the user
