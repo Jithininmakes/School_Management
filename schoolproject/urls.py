@@ -28,6 +28,8 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('library/', include('library.urls')),
     path('fees/', include('fees.urls'))
+    path('staff/', include('staff.urls'))
+
 
 
 

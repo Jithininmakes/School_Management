@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'dashboard',
     'library',
     'fees',
+    'staff',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
