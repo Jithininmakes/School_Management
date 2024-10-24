@@ -16,6 +16,10 @@
                     <td>{{ history.book_title }}</td>
                     <td>{{ history.issue_date }}</td>
                     <td>{{ history.return_date }}</td>
+                    <td>
+                        <a href="{% url 'library:library-update' history.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'library:library-delete' history.pk  %}" class="btn btn-warning btn-sm">Delete</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
