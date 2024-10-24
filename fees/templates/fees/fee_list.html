@@ -1,0 +1,26 @@
+{% block content %}
+    <h2>Fee History</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Amount</th>
+                <th>Date Paid</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fee in object_list %}
+                <tr>
+                    <td>{{ fee.student }}</td>
+                    <td>{{ fee.amount }}</td>
+                    <td>{{ fee.date_paid }}</td>
+                    <td>
+                        <a href="{% url 'fees:fee-update' fee.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'fees:fee-delete' fee.pk  %}" class="btn btn-warning btn-sm">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'fees:fee-create' %}" class="btn btn-primary">Add Fee Record</a>
+{% endblock %}
