@@ -30,6 +30,6 @@ class StaffUpdateView(UpdateView):
 
 class StaffDeleteView(DeleteView):
     model = Staff
-    template_name = 'staff/staff_confirm_delete.html'
+    template_name = 'staff/staff_delete.html'
     success_url = reverse_lazy('staff:staff_list')
 
