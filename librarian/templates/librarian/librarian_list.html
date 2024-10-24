@@ -1,0 +1,29 @@
+{% block content %}
+    <h2>Librarian List</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Nmae</th>
+                <th>Email</th>
+                <th>Phone</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for librarian in staff_list %}
+                <tr>
+                    <td>{{ librarian.first_name }}</td>
+                    <td>{{ librarian.last_name }}</td>
+                    <td>{{ librarian.email }}</td>
+                    <td>{{ librarian.phone_number }}</td>
+                    <td>
+                        <a href="{% url 'librarian:librarian_edit' staff.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'librarian:librarian_delete' staff.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'librarian:librarian_add' %}" class="btn btn-primary">Add New Staff</a>
+{% endblock %}
