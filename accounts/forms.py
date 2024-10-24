@@ -10,10 +10,11 @@ class RegisterForm(UserCreationForm):
     email = forms.EmailField(required=True, label='Email')
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
+    user_type = forms.ChoiceField(choices=User.USER_TYPE_CHOICES, label='User Type')
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2','user_type')
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -38,5 +39,8 @@ class RegisterForm(UserCreationForm):
 
 
 class LoginForm(AuthenticationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password']
     username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'autofocus': True}))
     password = forms.CharField(label='Password', widget=forms.PasswordInput)

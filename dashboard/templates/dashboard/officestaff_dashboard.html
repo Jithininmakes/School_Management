@@ -1,8 +1,8 @@
-<!-- {% extends 'base.html' %} -->
 
 {% block content %}
 <div class="container">
     <h1>Office Staff Dashboard</h1>
+    {% csrf_token %}
     <div class="row">
         <div class="col-md-6">
             <a href="" class="btn btn-primary">Manage Students</a>
