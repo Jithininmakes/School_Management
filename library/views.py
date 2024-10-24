@@ -16,5 +16,5 @@ class LibraryCreateView(CreateView):
     model = Library
     form_class = LibraryForm
     template_name = 'library/library_form.html'
-    success_url = reverse_lazy('library-list')
+    success_url = reverse_lazy('library:library-list')
 

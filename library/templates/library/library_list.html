@@ -1,0 +1,24 @@
+{% block content %}
+    <h2>Library History</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Book Title</th>
+                <th>Issue Date</th>
+                <th>Return Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for history in object_list %}
+                <tr>
+                    <td>{{ history.student }}</td>
+                    <td>{{ history.book_title }}</td>
+                    <td>{{ history.issue_date }}</td>
+                    <td>{{ history.return_date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'library:library-create' %}" class="btn btn-primary">Add Library Record</a>
+{% endblock %}
