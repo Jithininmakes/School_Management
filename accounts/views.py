@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import TemplateView
-
-
+from django.contrib import messages
 from django.urls import reverse_lazy
+
 from django.views.generic import CreateView,FormView
 from django.contrib.auth import login
 from django.contrib.auth import login as auth_login
 from django.shortcuts import redirect
 from .forms import RegisterForm,LoginForm
+from django.contrib.auth.views import LogoutView
+
 
 class RegisterView(CreateView):
     form_class = RegisterForm
@@ -46,11 +48,20 @@ class LoginView(FormView):
     def form_invalid(self, form):
         return super().form_invalid(form)
 
+    def dispatch(self, request, *args, **kwargs):
+        messages.success(request, "You have successfully logged out.")
+        return super().dispatch(request, *args, **kwargs)
+
+
+class LogoutView(LogoutView):
+    success_url = reverse_lazy('accounts:login')
+
+    
+
 
 class IndexView(TemplateView):
     template_name = 'school/index.html'
 
 # Create your views here.
-class HomeView(TemplateView):
-    template_name = 'school/home.html'
+
 

@@ -33,12 +33,28 @@
             background-color: #0056b3;
             color: white;
         }
+        .logout-button {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
     </style>
 </head>
 <body>
+
     <div class="dashboard-header">
         <h1>Admin Dashboard</h1>
         <p>Manage your school efficiently</p>
+
+        {% if messages %}
+    <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+        <a href="{% url 'accounts:login' %}" class="btn btn-danger logout-button">Logout</a>
     </div>
     
     <div class="container mt-5">
@@ -85,10 +101,24 @@
             </div>
         </div>
     </div>
+    
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Automatically remove the success message after 1 second
+        window.onload = function() {
+            const message = document.getElementById('success-message');
+            if (message) {
+                setTimeout(() => {
+                    message.remove();
+                }, 1000); // 1000 milliseconds = 1 second
+            }
+        };
+    </script>
+
 </body>
 </html>
 

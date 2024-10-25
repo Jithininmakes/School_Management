@@ -74,7 +74,17 @@
     </style>
 </head>
 <body>
+    
     <div class="container">
+
+        {% if messages %}
+    <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+    
         <h2>Login</h2>
         <form method="post" novalidate>
             {% csrf_token %}
@@ -93,6 +103,17 @@
         </form>
         <p>Don't have an account? <a href="{% url 'accounts:register' %}">Register here</a></p>
     </div>
+
+    <script>
+        window.onload = function() {
+            const messageAlert = document.querySelector('.alert');
+            if (messageAlert) {
+                setTimeout(() => {
+                    messageAlert.remove();
+                }, 1000); // Adjust time as necessary (5000ms = 5 seconds)
+            }
+        };
+    </script>
 </body>
 </html>
 
