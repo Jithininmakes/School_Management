@@ -81,14 +81,14 @@
             </thead>
             <tbody>
                 {% for librarian in librarian_list %}
-                    <tr>
+                    <tr id="librarian-row-{{ librarian.pk }}">
                         <td>{{ librarian.first_name }}</td>
                         <td>{{ librarian.last_name }}</td>
                         <td>{{ librarian.email }}</td>
                         <td>{{ librarian.phone_number }}</td>
                         <td>
                             <a href="{% url 'librarian:librarian_edit' librarian.pk %}" class="btn btn-warning">Edit</a>
-                            <a href="{% url 'librarian:librarian_delete' librarian.pk %}" class="btn btn-danger">Delete</a>
+                            <button class="btn btn-danger btn-sm" onclick="confirmDelete('{{ librarian.pk }}')">Delete</button>
                         </td>
                     </tr>
                 {% endfor %}
@@ -98,5 +98,32 @@
 
     </div>
 
+    <script>
+        function confirmDelete(librarianId) {
+            if (confirm("Are you sure you want to delete this librarian member?")) {
+                // Send the delete request directly
+                fetch(`/librarian/delete/${librarianId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById(`librarian-row-${librarianId}`).remove();
+                        alert("librarian member deleted successfully.");
+                    } else {
+                        alert("Failed to delete librarian member. Please try again.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("An error occurred. Please try again.");
+                });
+            }
+        }
+    </script>
+    
 </body>
 </html>

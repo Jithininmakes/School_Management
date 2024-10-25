@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.http import JsonResponse
+
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.shortcuts import redirect
 from .models import Librarian
@@ -31,6 +33,10 @@ class LibrarianUpdateView(UpdateView):
 
 class LibrarianDeleteView(DeleteView):
     model = Librarian
-    template_name = 'librarian/librarian_delete.html'
     success_url = reverse_lazy('librarian:librarian_list')
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return JsonResponse({'success': True})
 

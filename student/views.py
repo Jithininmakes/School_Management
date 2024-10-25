@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.http import JsonResponse
+
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Student
 from .forms import StudentForm
@@ -29,5 +31,10 @@ class StudentUpdateView(UpdateView):
 
 class StudentDeleteView(DeleteView):
     model = Student
-    template_name = 'students/student_delete.html'
     success_url = reverse_lazy('student:student-list')
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return JsonResponse({'success': True})
+

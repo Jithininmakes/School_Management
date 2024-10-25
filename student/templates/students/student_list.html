@@ -55,15 +55,14 @@
         </thead>
         <tbody>
             {% for student in object_list %}
-                <tr>
+                <tr id="student-row-{{ student.pk }}">
                     <td>{{ student.name }}</td>
                     <td>{{ student.dob }}</td>
                     <td>{{ student.class_name }}</td>
                     <td>{{ student.guardian_name }}</td>
                     <td>
                         <a href="{% url 'student:student-update' student.pk %}" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="{% url 'student:student-delete' student.pk %}" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
+                        <button class="btn btn-danger btn-sm" onclick="confirmDelete('{{ student.pk }}')">Delete</button>                    </td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -77,6 +76,34 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<script>
+    function confirmDelete(studentId) {
+        if (confirm("Are you sure you want to delete this student ?")) {
+            // Send the delete request directly
+            fetch(`/student/delete/${studentId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById(`student-row-${studentId}`).remove();
+                    alert("Student member deleted successfully.");
+                } else {
+                    alert("Failed to delete student member. Please try again.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred. Please try again.");
+            });
+        }
+    }
+</script>
 
 </body>
 </html>

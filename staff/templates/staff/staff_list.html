@@ -80,7 +80,7 @@
         </thead>
         <tbody>
             {% for staff in staff_list %}
-                <tr>
+                <tr id="staff-row-{{ staff.pk }}">
                     <td>{{ staff.first_name }}</td>
                     <td>{{ staff.last_name }}</td>
                     <td>{{ staff.email }}</td>
@@ -88,12 +88,39 @@
                     <td>{{ staff.phone_number }}</td>
                     <td>
                         <a href="{% url 'staff:staff_edit' staff.pk %}" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="{% url 'staff:staff_delete' staff.pk %}" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
+                        <button class="btn btn-danger btn-sm" onclick="confirmDelete('{{ staff.pk }}')">Delete</button>
+                    </td>                    
                 </tr>
             {% endfor %}
         </tbody>
     </table>
     <a href="{% url 'staff:staff_add' %}" class="btn btn-primary add-button">Add New Staff</a>
+
+    <script>
+        function confirmDelete(staffId) {
+            if (confirm("Are you sure you want to delete this staff member?")) {
+                // Send the delete request directly
+                fetch(`/staff/delete/${staffId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById(`staff-row-${staffId}`).remove();
+                        alert("Staff member deleted successfully.");
+                    } else {
+                        alert("Failed to delete staff member. Please try again.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("An error occurred. Please try again.");
+                });
+            }
+        }
+    </script>
 </body>
 </html>
