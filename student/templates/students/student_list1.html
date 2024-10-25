@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fee History</title>
+    <title>Student List</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #1610033e;
         }
         .container {
             margin-top: 50px;
@@ -19,47 +19,47 @@
             text-align: center;
             margin-bottom: 30px;
         }
-        .table {
-            margin-top: 20px;
-        }
-        .btn-primary {
+        .table th {
             background-color: #4e73df;
-            border-color: #4e73df;
+            color: white;
+            text-align: center;
         }
-        .btn-warning {
-            background-color: #f6c23e;
-            border-color: #f6c23e;
+        .table td {
+            text-align: center;
         }
+        .btn-primary, .btn-warning {
+            margin: 0 5px;
+        }
+       
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Fee History</h2>
-    <table class="table table-striped">
-        <thead class="thead-dark">
+    <h2>Student List</h2>
+    <table class="table table-bordered table-hover">
+        <thead>
             <tr>
-                <th>Student</th>
-                <th>Amount</th>
-                <th>Date Paid</th>
+                <th>Name</th>
+                <th>Date of Birth</th>
+                <th>Class</th>
+                <th>Guardian Name</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            {% for fee in object_list %}
+            {% for student in object_list %}
                 <tr>
-                    <td>{{ fee.student }}</td>
-                    <td>{{ fee.amount }}</td>
-                    <td>{{ fee.date_paid }}</td>
-                    <td>
-                        <a href="{% url 'fees:fee-update' fee.pk %}" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="{% url 'fees:fee-delete' fee.pk %}" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.dob }}</td>
+                    <td>{{ student.class_name }}</td>
+                    <td>{{ student.guardian_name }}</td>
+                    
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'fees:fee-create' %}" class="btn btn-primary">Add Fee Record</a>
+    
 </div>
 
 <!-- Bootstrap JS and dependencies -->

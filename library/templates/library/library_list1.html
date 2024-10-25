@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fee History</title>
+    <title>Library History</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -19,47 +19,50 @@
             text-align: center;
             margin-bottom: 30px;
         }
-        .table {
+        table {
             margin-top: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .btn-primary {
+        th {
             background-color: #4e73df;
-            border-color: #4e73df;
+            color: white;
         }
         .btn-warning {
-            background-color: #f6c23e;
-            border-color: #f6c23e;
+            margin-right: 10px;
+        }
+        .btn-primary {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Fee History</h2>
+    <h2>Library History</h2>
     <table class="table table-striped">
-        <thead class="thead-dark">
+        <thead>
             <tr>
                 <th>Student</th>
-                <th>Amount</th>
-                <th>Date Paid</th>
+                <th>Book Title</th>
+                <th>Issue Date</th>
+                <th>Return Date</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            {% for fee in object_list %}
+            {% for history in object_list %}
                 <tr>
-                    <td>{{ fee.student }}</td>
-                    <td>{{ fee.amount }}</td>
-                    <td>{{ fee.date_paid }}</td>
-                    <td>
-                        <a href="{% url 'fees:fee-update' fee.pk %}" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="{% url 'fees:fee-delete' fee.pk %}" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
+                    <td>{{ history.student }}</td>
+                    <td>{{ history.book_title }}</td>
+                    <td>{{ history.issue_date }}</td>
+                    <td>{{ history.return_date }}</td>
+                    
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'fees:fee-create' %}" class="btn btn-primary">Add Fee Record</a>
 </div>
 
 <!-- Bootstrap JS and dependencies -->

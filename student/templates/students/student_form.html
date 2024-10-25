@@ -1,8 +1,80 @@
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h2 {
+            color: #4e73df;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .btn-success {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
     <h2>Student Details</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
-{% endblock %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                </div>
+                <div class="form-group">
+                    {{ form.dob.label_tag }}
+                    {{ form.dob }}
+                </div>
+                <div class="form-group">
+                    {{ form.class_name.label_tag }}
+                    {{ form.class_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.guardian_name.label_tag }}
+                    {{ form.guardian_name }}
+                </div>
+                <div class="form-group">
+                    {{ form.address.label_tag }}
+                    {{ form.address }}
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+

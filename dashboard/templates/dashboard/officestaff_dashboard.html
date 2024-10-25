@@ -1,15 +1,83 @@
 
-{% block content %}
-<div class="container">
-    <h1>Office Staff Dashboard</h1>
-    {% csrf_token %}
-    <div class="row">
-        <div class="col-md-6">
-            <a href="" class="btn btn-primary">Manage Students</a>
-        </div>
-        <div class="col-md-6">
-            <a href="" class="btn btn-primary">Manage Fees</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .dashboard-header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .dashboard-card {
+            border: none;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+        .dashboard-card:hover {
+            transform: scale(1.05);
+        }
+        .dashboard-button {
+            font-size: 18px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        .dashboard-button:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-header">
+        <h1>Staff Dashboard</h1>
+        <p>Manage your school efficiently</p>
+    </div>
+    
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="card dashboard-card text-center shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Student List</h5>
+                        <a href="{% url 'student:student-list' %}" class="btn btn-primary dashboard-button">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card dashboard-card text-center shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Library History</h5>
+                        <a href="{% url 'library:library-list' %}" class="btn btn-primary dashboard-button">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card dashboard-card text-center shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Fees History</h5>
+                        <a href="{% url 'fees:fee-list' %}" class="btn btn-primary dashboard-button">View</a>
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
         </div>
     </div>
-</div>
-{% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
