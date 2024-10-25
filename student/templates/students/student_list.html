@@ -7,8 +7,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #dfe3e73e;
+         body {
+            background-color: #f8f9fa;
         }
         .container {
             margin-top: 50px;
@@ -19,13 +19,15 @@
             text-align: center;
             margin-bottom: 30px;
         }
-        .table th {
+        table {
+            margin-top: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        th {
             background-color: #4e73df;
             color: white;
-            text-align: center;
-        }
-        .table td {
-            text-align: center;
         }
         .btn-primary, .btn-warning {
             margin: 0 5px;
@@ -41,7 +43,7 @@
 
 <div class="container">
     <h2>Student List</h2>
-    <table class="table table-bordered table-hover">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Name</th>

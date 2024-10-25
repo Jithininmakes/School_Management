@@ -10,6 +10,11 @@ class StudentListView(ListView):
     model = Student
     template_name = 'students/student_list.html'
 
+
+class StudentList1View(ListView):
+    model = Student
+    template_name = 'students/student_list1.html'
+
 class StudentCreateView(CreateView):
     model = Student
     form_class = StudentForm

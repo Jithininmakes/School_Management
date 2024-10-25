@@ -11,6 +11,12 @@ class LibraryListView(ListView):
     template_name = 'library/library_list.html'
 
 
+class LibraryList1View(ListView):
+    model = Library
+    template_name = 'library/library_list1.html'
+
+
+
 class LibraryCreateView(CreateView):
     model = Library
     form_class = LibraryForm
