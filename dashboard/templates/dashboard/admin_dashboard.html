@@ -47,12 +47,12 @@
         <p>Manage your school efficiently</p>
 
         {% if messages %}
-    <div class="alert alert-success" role="alert">
-        {% for message in messages %}
-            {{ message }}
-        {% endfor %}
-    </div>
-    {% endif %}
+            <div id="success-message" class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
 
         <a href="{% url 'accounts:login' %}" class="btn btn-danger logout-button">Logout</a>
     </div>
@@ -64,22 +64,6 @@
                     <div class="card-body">
                         <h5 class="card-title">Student List</h5>
                         <a href="{% url 'student:student-list' %}" class="btn btn-primary dashboard-button">View</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="card dashboard-card text-center shadow">
-                    <div class="card-body">
-                        <h5 class="card-title">Library History</h5>
-                        <a href="{% url 'library:library-list' %}" class="btn btn-primary dashboard-button">View</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="card dashboard-card text-center shadow">
-                    <div class="card-body">
-                        <h5 class="card-title">Fees History</h5>
-                        <a href="{% url 'fees:fee-list' %}" class="btn btn-primary dashboard-button">View</a>
                     </div>
                 </div>
             </div>

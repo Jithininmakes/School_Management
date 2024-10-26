@@ -48,12 +48,12 @@
         <p>Manage your school efficiently</p>
 
         {% if messages %}
-    <div class="alert alert-success" role="alert">
-        {% for message in messages %}
-            {{ message }}
-        {% endfor %}
-    </div>
-    {% endif %}
+            <div id="success-message" class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
 
     <a href="{% url 'accounts:login' %}" class="btn btn-danger logout-button">Logout</a>
 
@@ -73,7 +73,7 @@
                 <div class="card dashboard-card text-center shadow">
                     <div class="card-body">
                         <h5 class="card-title">Library History</h5>
-                        <a href="{% url 'library:library-list1' %}" class="btn btn-primary dashboard-button">View</a>
+                        <a href="{% url 'library:library-list' %}" class="btn btn-primary dashboard-button">View</a>
                     </div>
                 </div>
             </div>

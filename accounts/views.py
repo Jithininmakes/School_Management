@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import TemplateView
-from django.contrib import messages
 from django.urls import reverse_lazy
 
 from django.views.generic import CreateView,FormView
@@ -48,9 +47,6 @@ class LoginView(FormView):
     def form_invalid(self, form):
         return super().form_invalid(form)
 
-    def dispatch(self, request, *args, **kwargs):
-        messages.success(request, "You have successfully logged out.")
-        return super().dispatch(request, *args, **kwargs)
 
 
 class LogoutView(LogoutView):
